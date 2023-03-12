@@ -12,7 +12,7 @@ function cleanUrl(link) {
   let url = new URL(link);
   if (url.host == "l.facebook.com") {
     url = new URL(url.searchParams.get("u"));
-    url.delete("fbclid");
+    url.searchParams.delete("fbclid");
   }
   return url.toString();
 }
