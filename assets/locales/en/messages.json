@@ -1,0 +1,11 @@
+{
+    "appName": {
+        "message": "copy-clean-url"
+    },
+    "appShortName": {
+        "message": "copy-clean-url"
+    },
+    "appDescription": {
+        "message": "Copy a url, without any tracking and obfuscation"
+    }
+}
