@@ -8,9 +8,18 @@ async function contentCopy(text) {
   await navigator.clipboard.writeText(text);
 }
 
+function cleanUrl(link) {
+  let url = new URL(link);
+  if (url.host == "l.facebook.com") {
+    url = new URL(url.searchParams.get("u"));
+    url.delete("fbclid");
+  }
+  return url.toString();
+}
+
 async function copyCleanLink(link, tab) {
   // TODO process the link
-  const doneLink = link;
+  const doneLink = cleanUrl(link);
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
     func: contentCopy,
