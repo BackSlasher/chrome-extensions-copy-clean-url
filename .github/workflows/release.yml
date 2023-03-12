@@ -1,0 +1,41 @@
+on:
+  push:
+    tags:
+      - "v*"
+
+name: Create Release
+jobs:
+  create_release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        name: create_release
+        id: create_release
+        with:
+          repo_token: "${{ secrets.GH_TOKEN }}"
+          prerelease: false
+      - uses: actions/checkout@v3
+      - name: prereqs
+        run: npm install --dev
+      - name: build firefox
+        run: npm run build:firefox
+      - name: upload firefox
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: release.zip
+          asset_name: firefox.zip
+          asset_content_type: application/gzip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: build chrome
+        run: npm run build
+      - name: upload chrome
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: release.zip
+          asset_name: chrome.zip
+          asset_content_type: application/gzip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
