@@ -27,7 +27,7 @@
       }
     },
     "chrome": {
-      "version_name": "0.0.1",
+      "version_name": "0.0.2",
       "background": {
           "service_worker": "background.js"
       }
