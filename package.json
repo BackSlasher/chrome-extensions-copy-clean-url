@@ -1,7 +1,7 @@
 {
     "name": "copy-clean-url",
     "description": "Copy a url, without any tracking and obfuscation",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "homepage": "http://chrome.google.com/webstore",
     "author": "ENTER YOUR NAME HERE",
     "repository": {
